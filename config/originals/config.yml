@@ -1,0 +1,68 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: license
+  annotations:
+    description: Configuration Map for license
+data:
+  accept.license: "true"
+  ssg.license: "YOUR_LICENSE_HERE"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env
+  annotations:
+    descriptions: Configuration Map for environment variables for Container Gateway
+data:
+  extra-java-args.env: "-Dcom.l7tech.bootstrap.env.license.enable=true -Dcom.l7tech.bootstrap.autoTrustSslKey=trustAnchor,TrustedFor.SSL,TrustedFor.SAML_ISSUER"
+  ssg-database-jdbc-url.env: "jdbc:mysql://mysql-server:3306/ssg"
+  ssg-cluster-host.env: "localhost"
+  ssg-cluster-password.env: "7layer"
+  ssg-jvm-heap.env: "4g" 
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gw-secret
+  labels:
+    name: gw-secret
+  annotations:
+    description: Template for Secrets for the Gateway
+data:
+  ssg.adminusername: YWRtaW4=
+  ssg.adminpassword: cGFzc3dvcmQ=
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gw-db-secret
+  labels:
+    name: gw-db-secret
+  annotations:
+    description: Template for Database Secrets for the Gateway
+data:
+  ssg.databaseuser: cm9vdA==
+  ssg.databasepass: N2xheWVy
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: databaseconfig
+  annotations:
+    description: Configuration Map for "db" type deployment
+data:
+  mysql.database: "ssg"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  labels:
+    name: mysql-secret
+  annotations:
+    description: Template for Database Secrets for the Gateway
+data:
+  mysql.user: cm9vdA==
+  mysql.password: N2xheWVy

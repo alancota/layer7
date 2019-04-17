@@ -15,4 +15,4 @@ k8s: ## Check your Kubernetes cluster
 	kubectl cluster-info && kubectl get all
 
 reset-license:
-	rm config.yml && cp ../tmp/config.yml .
+	rm config.yml && cp ../config/originals/config.yml .
