@@ -39,9 +39,9 @@ After launching the Hazelcast Management UI for the first time you're going to n
 Within the Hazelcast Management UI look for the following options to see the API gateway interactions:
 
 * **Clients** - Here you can see all the API Gateway, and other clients, connected to the Hazelcast Cluster
-![Clients](images/hcmgm1.png)
+![Clients](../images/hcmgm1.png)
 * **Maps** - All the maps created by the API Gateway
-![Maps](images/hcmgm2.png)
+![Maps](../images/hcmgm2.png)
 
 ### Getting the logs
 
