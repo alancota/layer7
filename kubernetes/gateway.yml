@@ -11,7 +11,7 @@ metadata:
 spec:
   selector:
     app: gw
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 8080

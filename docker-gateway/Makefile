@@ -1,14 +1,5 @@
 SHELL := /bin/bash
 
-HELP_FUN = \
-         %help; \
-         while(<>) { push @{$$help{$$2 // 'options'}}, [$$1, $$3] if /^(\w+)\s*:.*\#\#(?:@(\w+))?\s(.*)$$/ }; \
-         print "usage: make [target]\n\n"; \
-     for (keys %help) { \
-         print "$$_:\n"; $$sep = " " x (20 - length $$_->[0]); \
-         print "  $$_->[0]$$sep$$_->[1]\n" for @{$$help{$$_}}; \
-         print "\n"; }  
-
 default: help
 
 help: ## Use one of the following targets by running make <target>
