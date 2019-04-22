@@ -14,6 +14,7 @@ services:
     volumes:
       - /opt/SecureSpan/Gateway/node/default/etc/bootstrap/services/restman
       - ../config/licenses:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/license
+      - ./bundles/myapi.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/myapi.bundle
       - ./hazelcast/apigw-hazelcast-client.xml:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/assertions/ExternalHazelcastSharedStateProviderAssertion/hazelcast-client.xml
     environment:
       ACCEPT_LICENSE: "true"

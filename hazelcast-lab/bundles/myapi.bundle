@@ -1,0 +1,125 @@
+<l7:Bundle xmlns:l7="http://ns.l7tech.com/2010/04/gateway-management">
+  <l7:References>
+    <l7:Item>
+      <l7:Name>MyAPI</l7:Name>
+      <l7:Id>11271a8117b948afb50f8983921fb217</l7:Id>
+      <l7:Type>SERVICE</l7:Type>
+      <l7:TimeStamp>2019-04-22T18:53:06.970Z</l7:TimeStamp>
+      <l7:Resource>
+        <l7:Service id="11271a8117b948afb50f8983921fb217" version="2">
+          <l7:ServiceDetail folderId="0000000000000000ffffffffffffec76" id="11271a8117b948afb50f8983921fb217" version="2">
+            <l7:Name>MyAPI</l7:Name>
+            <l7:Enabled>true</l7:Enabled>
+            <l7:ServiceMappings>
+              <l7:HttpMapping>
+                <l7:UrlPattern>/myapi*</l7:UrlPattern>
+                <l7:Verbs>
+                  <l7:Verb>GET</l7:Verb>
+                  <l7:Verb>POST</l7:Verb>
+                  <l7:Verb>PUT</l7:Verb>
+                  <l7:Verb>DELETE</l7:Verb>
+                </l7:Verbs>
+              </l7:HttpMapping>
+            </l7:ServiceMappings>
+            <l7:Properties>
+              <l7:Property key="internal">
+                <l7:BooleanValue>false</l7:BooleanValue>
+              </l7:Property>
+              <l7:Property key="policyRevision">
+                <l7:LongValue>11</l7:LongValue>
+              </l7:Property>
+              <l7:Property key="soap">
+                <l7:BooleanValue>false</l7:BooleanValue>
+              </l7:Property>
+              <l7:Property key="tracingEnabled">
+                <l7:BooleanValue>false</l7:BooleanValue>
+              </l7:Property>
+              <l7:Property key="wssProcessingEnabled">
+                <l7:BooleanValue>false</l7:BooleanValue>
+              </l7:Property>
+            </l7:Properties>
+          </l7:ServiceDetail>
+          <l7:Resources>
+            <l7:ResourceSet tag="policy">
+              <l7:Resource type="policy" version="10">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy"&gt;
+    &lt;wsp:All wsp:Usage="Required"&gt;
+        &lt;L7p:SetVariable&gt;
+            &lt;L7p:Base64Expression stringValue="MjAwMA=="/&gt;
+            &lt;L7p:VariableToSet stringValue="quota.limit"/&gt;
+        &lt;/L7p:SetVariable&gt;
+        &lt;L7p:SetVariable&gt;
+            &lt;L7p:Base64Expression stringValue="YWxhbmNvdGE="/&gt;
+            &lt;L7p:VariableToSet stringValue="authuser"/&gt;
+        &lt;/L7p:SetVariable&gt;
+        &lt;L7p:SetVariable&gt;
+            &lt;L7p:Base64Expression stringValue="REVWLSR7YXV0aHVzZXJ9"/&gt;
+            &lt;L7p:VariableToSet stringValue="custom.counter"/&gt;
+        &lt;/L7p:SetVariable&gt;
+        &lt;L7p:CustomizeErrorResponse&gt;
+            &lt;L7p:Content stringValueReference="inline"&gt;&lt;![CDATA[You exceeded your quota!
+
+Counter ID: ${counter.id}
+Counter value: ${counter.value}
+Counter period: ${counter.period}
+Counter user: ${counter.user}
+Counter Max: ${counter.max}
+--
+
+Counter Name: ${quota.counter.name}
+Counter Sec: ${quota.counter.sec}
+Counter Minute: ${quota.counter.min}
+Counter Hour: ${quota.counter.hr}
+Counter Day: ${quota.counter.day}
+Counter Month: ${quota.counter.mnt}
+Counter Last Update Date: ${quota.counter.lastupdate}]]&gt;&lt;/L7p:Content&gt;
+            &lt;L7p:ExtraHeaders nameValuePairArray="included"/&gt;
+        &lt;/L7p:CustomizeErrorResponse&gt;
+        &lt;L7p:ThroughputQuota&gt;
+            &lt;L7p:CounterName stringValue="${custom.counter}"/&gt;
+            &lt;L7p:Global booleanValue="true"/&gt;
+            &lt;L7p:Quota stringValue="${quota.limit}"/&gt;
+            &lt;L7p:ReadSynchronous booleanValue="false"/&gt;
+            &lt;L7p:Synchronous booleanValue="false"/&gt;
+            &lt;L7p:TimeUnit stringValue="day"/&gt;
+        &lt;/L7p:ThroughputQuota&gt;
+        &lt;L7p:ThroughputQuotaQuery&gt;
+            &lt;L7p:CounterName stringValue="${custom.counter}"/&gt;
+            &lt;L7p:VariablePrefix stringValue="quota"/&gt;
+        &lt;/L7p:ThroughputQuotaQuery&gt;
+        &lt;wsp:OneOrMore L7p:Enabled="false" wsp:Usage="Required"/&gt;
+        &lt;L7p:CustomizeErrorResponse&gt;
+            &lt;L7p:Content stringValue="Rate limit exceeded"/&gt;
+            &lt;L7p:ExtraHeaders nameValuePairArray="included"/&gt;
+        &lt;/L7p:CustomizeErrorResponse&gt;
+        &lt;L7p:RateLimitQuery&gt;
+            &lt;L7p:CounterName stringValue="${custom.counter}"/&gt;
+        &lt;/L7p:RateLimitQuery&gt;
+        &lt;L7p:RateLimit&gt;
+            &lt;L7p:CounterName stringValue="${custom.counter}"/&gt;
+            &lt;L7p:MaxRequestsPerSecond stringValue="3"/&gt;
+        &lt;/L7p:RateLimit&gt;
+        &lt;L7p:HardcodedResponse&gt;
+            &lt;L7p:Base64ResponseBody stringValue="JHtnYXRld2F5LnRpbWUubG9jYWx9Ckl0IHdvcmtlZAotLQoKUmF0ZSBMaW1pdDoKClJlcXVlc3RzIGxlZnQ6ICR7Y291bnRlci5yZXF1ZXN0c3JlbWFpbmluZ30KLS0KClF1b3RhOgoKQ291bnRlciBJRDogJHtjb3VudGVyLmlkfQpDb3VudGVyIHZhbHVlOiAke2NvdW50ZXIudmFsdWV9CkNvdW50ZXIgcGVyaW9kOiAke2NvdW50ZXIucGVyaW9kfQpDb3VudGVyIHVzZXI6ICR7Y291bnRlci51c2VyfQpDb3VudGVyIE1heDogJHtjb3VudGVyLm1heH0KLS0KCkNvdW50ZXIgTmFtZTogJHtxdW90YS5jb3VudGVyLm5hbWV9CkNvdW50ZXIgU2VjOiAke3F1b3RhLmNvdW50ZXIuc2VjfQpDb3VudGVyIE1pbnV0ZTogJHtxdW90YS5jb3VudGVyLm1pbn0KQ291bnRlciBIb3VyOiAke3F1b3RhLmNvdW50ZXIuaHJ9CkNvdW50ZXIgRGF5OiAke3F1b3RhLmNvdW50ZXIuZGF5fQpDb3VudGVyIE1vbnRoOiAke3F1b3RhLmNvdW50ZXIubW50fQpDb3VudGVyIExhc3QgVXBkYXRlIERhdGU6ICR7cXVvdGEuY291bnRlci5sYXN0dXBkYXRlfQ=="/&gt;
+            &lt;L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/&gt;
+        &lt;/L7p:HardcodedResponse&gt;
+    &lt;/wsp:All&gt;
+&lt;/wsp:Policy&gt;
+              </l7:Resource>
+            </l7:ResourceSet>
+          </l7:Resources>
+        </l7:Service>
+      </l7:Resource>
+    </l7:Item>
+  </l7:References>
+  <l7:Mappings>
+    <l7:Mapping action="NewOrExisting" srcId="0000000000000000ffffffffffffec76" srcUri="https://bb8384698717:32781/restman/1.0/folders/0000000000000000ffffffffffffec76" type="FOLDER">
+      <l7:Properties>
+        <l7:Property key="FailOnNew">
+          <l7:BooleanValue>true</l7:BooleanValue>
+        </l7:Property>
+      </l7:Properties>
+    </l7:Mapping>
+    <l7:Mapping action="NewOrExisting" srcId="11271a8117b948afb50f8983921fb217" srcUri="https://bb8384698717:32781/restman/1.0/services/11271a8117b948afb50f8983921fb217" type="SERVICE"/>
+  </l7:Mappings>
+</l7:Bundle>
