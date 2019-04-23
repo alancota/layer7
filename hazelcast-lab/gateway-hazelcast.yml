@@ -8,9 +8,9 @@ services:
   api-gateway:
     image: caapim/gateway
     ports:
-      - "8080"
-      - "8443"
-      - "9443"
+      - "8080:8080"
+      - "8443:8443"
+      - "9443:9443"
     volumes:
       - /opt/SecureSpan/Gateway/node/default/etc/bootstrap/services/restman
       - ../config/licenses:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/license
