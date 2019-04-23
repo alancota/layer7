@@ -4,7 +4,7 @@
       <l7:Name>MyAPI</l7:Name>
       <l7:Id>11271a8117b948afb50f8983921fb217</l7:Id>
       <l7:Type>SERVICE</l7:Type>
-      <l7:TimeStamp>2019-04-22T18:53:06.970Z</l7:TimeStamp>
+      <l7:TimeStamp>2019-04-23T13:54:59.857Z</l7:TimeStamp>
       <l7:Resource>
         <l7:Service id="11271a8117b948afb50f8983921fb217" version="2">
           <l7:ServiceDetail folderId="0000000000000000ffffffffffffec76" id="11271a8117b948afb50f8983921fb217" version="2">
@@ -26,7 +26,7 @@
                 <l7:BooleanValue>false</l7:BooleanValue>
               </l7:Property>
               <l7:Property key="policyRevision">
-                <l7:LongValue>11</l7:LongValue>
+                <l7:LongValue>7</l7:LongValue>
               </l7:Property>
               <l7:Property key="soap">
                 <l7:BooleanValue>false</l7:BooleanValue>
@@ -41,9 +41,10 @@
           </l7:ServiceDetail>
           <l7:Resources>
             <l7:ResourceSet tag="policy">
-              <l7:Resource type="policy" version="10">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+              <l7:Resource type="policy" version="6">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy"&gt;
     &lt;wsp:All wsp:Usage="Required"&gt;
+        &lt;L7p:AuditAssertion/&gt;
         &lt;L7p:SetVariable&gt;
             &lt;L7p:Base64Expression stringValue="MjAwMA=="/&gt;
             &lt;L7p:VariableToSet stringValue="quota.limit"/&gt;
@@ -99,6 +100,12 @@ Counter Last Update Date: ${quota.counter.lastupdate}]]&gt;&lt;/L7p:Content&gt;
             &lt;L7p:CounterName stringValue="${custom.counter}"/&gt;
             &lt;L7p:MaxRequestsPerSecond stringValue="3"/&gt;
         &lt;/L7p:RateLimit&gt;
+        &lt;L7p:AuditDetailAssertion&gt;
+            &lt;L7p:Detail stringValue="#####==&gt; Rate Limit information: [${counter.requestsremaining}] requests remaining"/&gt;
+        &lt;/L7p:AuditDetailAssertion&gt;
+        &lt;L7p:AuditDetailAssertion&gt;
+            &lt;L7p:Detail stringValue="#####==&gt; Quota information: request [${counter.value}] of [${counter.max}] per ${counter.period}"/&gt;
+        &lt;/L7p:AuditDetailAssertion&gt;
         &lt;L7p:HardcodedResponse&gt;
             &lt;L7p:Base64ResponseBody stringValue="JHtnYXRld2F5LnRpbWUubG9jYWx9Ckl0IHdvcmtlZAotLQoKUmF0ZSBMaW1pdDoKClJlcXVlc3RzIGxlZnQ6ICR7Y291bnRlci5yZXF1ZXN0c3JlbWFpbmluZ30KLS0KClF1b3RhOgoKQ291bnRlciBJRDogJHtjb3VudGVyLmlkfQpDb3VudGVyIHZhbHVlOiAke2NvdW50ZXIudmFsdWV9CkNvdW50ZXIgcGVyaW9kOiAke2NvdW50ZXIucGVyaW9kfQpDb3VudGVyIHVzZXI6ICR7Y291bnRlci51c2VyfQpDb3VudGVyIE1heDogJHtjb3VudGVyLm1heH0KLS0KCkNvdW50ZXIgTmFtZTogJHtxdW90YS5jb3VudGVyLm5hbWV9CkNvdW50ZXIgU2VjOiAke3F1b3RhLmNvdW50ZXIuc2VjfQpDb3VudGVyIE1pbnV0ZTogJHtxdW90YS5jb3VudGVyLm1pbn0KQ291bnRlciBIb3VyOiAke3F1b3RhLmNvdW50ZXIuaHJ9CkNvdW50ZXIgRGF5OiAke3F1b3RhLmNvdW50ZXIuZGF5fQpDb3VudGVyIE1vbnRoOiAke3F1b3RhLmNvdW50ZXIubW50fQpDb3VudGVyIExhc3QgVXBkYXRlIERhdGU6ICR7cXVvdGEuY291bnRlci5sYXN0dXBkYXRlfQ=="/&gt;
             &lt;L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/&gt;
@@ -113,13 +120,13 @@ Counter Last Update Date: ${quota.counter.lastupdate}]]&gt;&lt;/L7p:Content&gt;
     </l7:Item>
   </l7:References>
   <l7:Mappings>
-    <l7:Mapping action="NewOrExisting" srcId="0000000000000000ffffffffffffec76" srcUri="https://bb8384698717:32781/restman/1.0/folders/0000000000000000ffffffffffffec76" type="FOLDER">
+    <l7:Mapping action="NewOrExisting" srcId="0000000000000000ffffffffffffec76" srcUri="https://36a3d794b0fa:8443/restman/1.0/folders/0000000000000000ffffffffffffec76" type="FOLDER">
       <l7:Properties>
         <l7:Property key="FailOnNew">
           <l7:BooleanValue>true</l7:BooleanValue>
         </l7:Property>
       </l7:Properties>
     </l7:Mapping>
-    <l7:Mapping action="NewOrExisting" srcId="11271a8117b948afb50f8983921fb217" srcUri="https://bb8384698717:32781/restman/1.0/services/11271a8117b948afb50f8983921fb217" type="SERVICE"/>
+    <l7:Mapping action="NewOrExisting" srcId="11271a8117b948afb50f8983921fb217" srcUri="https://36a3d794b0fa:8443/restman/1.0/services/11271a8117b948afb50f8983921fb217" type="SERVICE"/>
   </l7:Mappings>
 </l7:Bundle>
